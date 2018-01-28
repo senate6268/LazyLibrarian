@@ -487,6 +487,10 @@
                     <input type="text" id="deluge_host" name="deluge_host" value="${lazylibrarian.CONFIG['DELUGE_HOST']}" size="26">
                   </div>
                   <div class="row">
+                    <label>Deluge Url Base:</label>
+                    <input type="text" id="deluge_url_base" name="deluge_url_base" value="${lazylibrarian.CONFIG['DELUGE_URL_BASE']}" size="26">
+                  </div>
+                  <div class="row">
                     <label>Deluge Port:</label>
                     <input type="text" id="deluge_port" name="deluge_port" value="${lazylibrarian.CONFIG['DELUGE_PORT']}" size="26">
                   </div>
@@ -2554,11 +2558,12 @@
 
         $('#testDeluge').click(function () {
             var host = $.trim($("#deluge_host").val());
+            var url_base = $.trim($("#deluge_url_base").val());
             var port = $.trim($("#deluge_port").val());
             var user = $.trim($("#deluge_user").val());
             var pwd = $.trim($("#deluge_pass").val());
             var label = $.trim($("#deluge_label").val());
-            $.get("testDeluge", {'host': host, 'port': port, 'user': user, 'pwd': pwd, 'label': label},
+            $.get("testDeluge", {'host': host, 'url_base': url_base, 'port': port, 'user': user, 'pwd': pwd, 'label': label},
                 function (data) { alert(data); });
         });
 

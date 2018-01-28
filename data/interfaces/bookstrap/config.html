@@ -698,9 +698,15 @@
                 <fieldset id="deluge_options">
                   <legend>Deluge</legend>
                   <div class="row">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-12">
                       <label for="deluge_host">Deluge Host:</label>
                       <input type="text" id="deluge_host" name="deluge_host" value="${lazylibrarian.CONFIG['DELUGE_HOST']}" class="form-control" placeholder="Deluge Host">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-8">
+                      <label for="deluge_url_base" class="text-warning" data-toggle="tooltip" data-placement="right" title="Adds a prefix to the deluge json url, see [host]:[port]/[urlBase]/json">Deluge Url Base:</label>
+                      <input type="text" id="deluge_url_base" name="deluge_url_base" value="${lazylibrarian.CONFIG['DELUGE_URL_BASE']}" class="form-control" placeholder="Deluge Url Base">
                     </div>
                     <div class="form-group col-md-4">
                       <label for="deluge_port" class="control-label">Deluge Port:</label>
@@ -3093,11 +3099,12 @@
 
         $('#testDeluge').on('click', function() {
             var host = $.trim($("#deluge_host").val());
+            var url_base = $.trim($("#deluge_url_base").val());
             var port = $.trim($("#deluge_port").val());
             var user = $.trim($("#deluge_user").val());
             var pwd = $.trim($("#deluge_pass").val());
             var label = $.trim($("#deluge_label").val());
-            $.get("testDeluge", {'host': host, 'port': port, 'user': user, 'pwd': pwd, 'label': label},
+            $.get("testDeluge", {'host': host, 'url_base': url_base, 'port': port, 'user': user, 'pwd': pwd, 'label': label},
                 function(data) {
                     bootbox.dialog({
                     title: 'Deluge Connection',

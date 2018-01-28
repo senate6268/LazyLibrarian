@@ -223,6 +223,7 @@ def _get_auth():
     delugeweb_auth = {}
 
     delugeweb_host = lazylibrarian.CONFIG['DELUGE_HOST']
+    delugeweb_url_base = lazylibrarian.CONFIG['DELUGE_URL_BASE']
     delugeweb_port = check_int(lazylibrarian.CONFIG['DELUGE_PORT'], 0)
     if not delugeweb_host or not delugeweb_port:
         logger.error('Invalid delugeweb host or port, check your config')
@@ -236,9 +237,12 @@ def _get_auth():
     if delugeweb_host.endswith('/'):
         delugeweb_host = delugeweb_host[:-1]
 
+    if delugeweb_url_base.endswith('/'):
+        delugeweb_url_base = delugeweb_url_base[:-1]
+
     delugeweb_host = "%s:%s" % (delugeweb_host, delugeweb_port)
 
-    delugeweb_url = delugeweb_host + '/json'
+    delugeweb_url = delugeweb_host + delugeweb_url_base + '/json'
 
     post_data = json.dumps({"method": "auth.login",
                             "params": [delugeweb_password],

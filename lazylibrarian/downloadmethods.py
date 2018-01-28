@@ -313,6 +313,7 @@ def TORDownloadMethod(bookid=None, tor_title=None, tor_url=None, library='eBook'
             # have username, talk to the daemon
             Source = "DELUGERPC"
             client = DelugeRPCClient(lazylibrarian.CONFIG['DELUGE_HOST'],
+                                     lazylibrarian.CONFIG['DELUGE_URL_BASE'],
                                      int(lazylibrarian.CONFIG['DELUGE_PORT']),
                                      lazylibrarian.CONFIG['DELUGE_USER'],
                                      lazylibrarian.CONFIG['DELUGE_PASS'])

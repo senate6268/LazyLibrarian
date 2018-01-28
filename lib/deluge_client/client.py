@@ -24,8 +24,9 @@ class CallTimeoutException(Exception):
 class DelugeRPCClient(object):
     timeout = 20
 
-    def __init__(self, host, port, username, password):
+    def __init__(self, host, url_base, port, username, password):
         self.host = host
+        self.url_base = url_base
         self.port = port
         self.username = username
         self.password = password

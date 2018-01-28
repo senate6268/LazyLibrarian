@@ -337,6 +337,7 @@ def processDir(reset=False):
                             torrentname = deluge.getTorrentFolder(book['DownloadID'])
                         elif book['Source'] == 'DELUGERPC':
                             client = DelugeRPCClient(lazylibrarian.CONFIG['DELUGE_HOST'],
+                                                     lazylibrarian.CONFIG['DELUGE_URL_BASE'],
                                                      int(lazylibrarian.CONFIG['DELUGE_PORT']),
                                                      lazylibrarian.CONFIG['DELUGE_USER'],
                                                      lazylibrarian.CONFIG['DELUGE_PASS'])
@@ -816,6 +817,7 @@ def delete_task(Source, DownloadID, remove_data):
             deluge.removeTorrent(DownloadID, remove_data)
         elif Source == "DELUGERPC":
             client = DelugeRPCClient(lazylibrarian.CONFIG['DELUGE_HOST'],
+                                     lazylibrarian.CONFIG['DELUGE_URL_BASE'],
                                      int(lazylibrarian.CONFIG['DELUGE_PORT']),
                                      lazylibrarian.CONFIG['DELUGE_USER'],
                                      lazylibrarian.CONFIG['DELUGE_PASS'])

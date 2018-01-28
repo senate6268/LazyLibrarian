@@ -3412,6 +3412,8 @@ class WebInterface(object):
         threading.currentThread().name = "WEBSERVER"
         if 'host' in kwargs:
             lazylibrarian.CONFIG['DELUGE_HOST'] = kwargs['host']
+        if 'url_base' in kwargs:
+            lazylibrarian.CONFIG['DELUGE_URL_BASE'] = kwargs['url_base']
         if 'port' in kwargs:
             lazylibrarian.CONFIG['DELUGE_PORT'] = check_int(kwargs['port'], 0)
         if 'user' in kwargs:
@@ -3430,6 +3432,7 @@ class WebInterface(object):
             else:
                 # if there's a username, talk to the daemon directly
                 client = DelugeRPCClient(lazylibrarian.CONFIG['DELUGE_HOST'],
+                                         lazylibrarian.CONFIG['DELUGE_URL_BASE'],
                                          check_int(lazylibrarian.CONFIG['DELUGE_PORT'], 0),
                                          lazylibrarian.CONFIG['DELUGE_USER'],
                                          lazylibrarian.CONFIG['DELUGE_PASS'])
